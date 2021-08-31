@@ -1,0 +1,39 @@
+<div class="router-wrapper">
+  <div class="card border-0 shadow-sm bg-white mx-3 mb-3">
+    <p class="lead fs-6 headline mt-2"><b>Costs</b></p>
+    <div class="table-main table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Agreement ID</th>
+            <th>Provider Reimbursement</th>
+            <th>Consumer Refund</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="costData.length===0">
+            <td colspan="12" class="pb-5">
+              <div class="center pt-5 pb-3">
+                <img src="../../../assets/images/empty_table.svg" alt="et" width="100px">
+              </div>
+              <p class="lead text-danger">No Records Found !</p>
+            </td>
+          </tr>
+          <tr *ngFor="let item of costData | paginate:config;">
+            <td matTooltip="{{item.offer_request_id}}" [matTooltipPosition]="'above'">{{(item.offer_request_id.length>20)? (item.offer_request_id | slice:0:20)+'..':(item.offer_request_id)}}</td>
+            <td matTooltip="{{item.agreement}}" [matTooltipPosition]="'above'">{{(item.agreement.length>20)? (item.agreement | slice:0:20)+'..':(item.agreement)}}</td>
+            <td>{{item.providerReimbursement||'N/A'}}</td>
+            <td>{{item.consumerRefund||'N/A'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-container *ngIf="costData.length>10">
+      <div class="d-flex justify-content-end mt-2">
+        <pagination-controls (pageChange)="config.currentPage=$event" class="my-pagination">
+        </pagination-controls>
+      </div>
+    </ng-container>
+  </div>
+</div>

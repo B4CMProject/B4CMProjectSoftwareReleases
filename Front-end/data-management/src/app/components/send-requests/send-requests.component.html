@@ -1,0 +1,64 @@
+<div class="router-wrapper">
+  <div class="card border-0 shadow-sm bg-white mx-3 mb-3">
+    <p class="lead fs-6 headline"><b>Send Requests</b></p>
+    <span class="sp-hr"></span>
+    <div class="mt-2">
+      <form [formGroup]="requestForm">
+        <div class="row mx-0 mb-1 p-0">
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Offer ID</label>
+            <select name="select_offer" id="s_o" formControlName="offer_id" class="form-control-select"
+              (ngModelChange)="onOfferIdChange(requestForm.controls.offer_id.value)">
+              <option value="" disabled>Select Offer ID</option>
+              <option value="{{item.Record.id}}" *ngFor="let item of offersList">{{item.Record.id}}</option>
+            </select>
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Start Date</label>
+            <mat-form-field class="form-control">
+              <input matInput [matDatepicker]="dp1" [disabled]=true [min]="current_Date" formControlName="startDate"
+                (ngModelChange)="onStartDateChange()">
+              <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+              <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">End Date</label>
+            <mat-form-field class="form-control">
+              <input matInput [matDatepicker]="dp2" [disabled]=true [min]="requestForm.controls.startDate.value"
+                formControlName="endDate">
+              <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+              <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Deposit</label>
+            <div class="input-group">
+              <span class="input-group-text" id="basic-addon1">£</span>
+              <input type="number" min="0" formControlName="cDeposit" class="form-control" placeholder="Deposit"
+                aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Monthly Price</label>
+            <div class="input-group">
+              <span class="input-group-text" id="basic-addon1">£</span>
+              <input type="number" min="0" formControlName="price" class="form-control" placeholder="Monthly Deposit"
+                aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Total Payment</label>
+            <input type="text" [value]="requestForm.controls.cDeposit.value+requestForm.controls.price.value"
+              class="form-control" placeholder="Total Payment" readonly>
+          </div>
+        </div>
+      </form>
+      <div class="row my-3 mx-1 mx-sm-1 mx-md-0 mx-lg-0">
+        <div class="col d-none d-sm-none d-md-block"></div>
+        <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 d-flex justify-content-end"><button
+            [disabled]="requestForm.invalid" class="btn btn-main2 sendreq-btn" (click)="submitRequest()">Send Request</button></div>
+      </div>
+    </div>
+  </div>
+</div>

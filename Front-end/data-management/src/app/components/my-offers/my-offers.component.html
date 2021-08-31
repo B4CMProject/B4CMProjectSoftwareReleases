@@ -1,0 +1,108 @@
+<div class="router-wrapper">
+  <div *ngIf="!isEdit" class="card border-0 shadow-sm bg-white mx-3 mb-3">
+    <p class="lead fs-6 headline"><b>My Offers</b></p>
+    <div class="table-main table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Offer ID</th>
+            <th>Validity</th>
+            <th>Data Owner</th>
+            <th>Equipment</th>
+            <th>Asset</th>
+            <th>Processing Level</th>
+            <th>Price</th>
+            <th>Deposit</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="offersData.length==0">
+            <td colspan="12" class="pb-5">
+              <div class="center pt-5 pb-3">
+                <img src="../../../assets/images/empty_table.svg" alt="et" width="100px">
+              </div>
+              <p class="lead text-danger">No Records Found !</p>
+            </td>
+          </tr>
+          <tr *ngFor="let item of offersData | paginate:config; let i=index">
+            <td>{{item.Record.id}}</td>
+            <td>{{item.Record.validity?'True':'False'}}</td>
+            <td>{{item.Record.dataOwner}}</td>
+            <td>{{item.Record.equipment}}</td>
+            <td>{{item.Record.monitoredAsset}}</td>
+            <td>{{item.Record.processingLevel}}</td>
+            <td>{{item.Record.price}}</td>
+            <td>{{item.Record.deposit}}</td>
+            <td><button class="btn btn-sm update-btn btn-main2" (click)="updateOffer(item)">Update</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-container *ngIf="offersData.length>10">
+      <div class="d-flex justify-content-end mt-2">
+        <pagination-controls (pageChange)="config.currentPage=$event" class="my-pagination">
+        </pagination-controls>
+      </div>
+    </ng-container>
+  </div>
+  <div *ngIf="isEdit" class="card border-0 shadow-sm bg-white mx-3 mb-3">
+    <p class="lead fs-6 headline"><b>Edit Offer</b></p>
+    <div class="mt-2">
+      <form [formGroup]="offerForm">
+        <div class="row mx-0 mb-1 p-0">
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Offer ID</label>
+            <input type="text" formControlName="id" class="form-control" placeholder="Enter Offer ID">
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Validity</label>
+            <div class="row m-0 p-0">
+              <div class="col-6 ps-0"><button class="btn btn-main w-100" [ngClass]="{'btn-main-active': setVal}" (click)="setValidity(true)">True</button></div>
+              <div class="col-6 pe-0"><button class="btn btn-main w-100" [ngClass]="{'btn-main-active': !setVal}" (click)="setValidity(false)">False</button></div>
+            </div>
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Data Owner</label>
+            <input type="text" formControlName="dataOwner" class="form-control" placeholder="Enter Data Owner">
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Equipments</label>
+            <input type="text" formControlName="equipment" class="form-control" placeholder="Enter Equipments">
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Asset</label>
+            <input type="text" formControlName="monitoredAsset" class="form-control" placeholder="Enter Asset">
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Processing Level</label>
+            <input type="text" formControlName="processingLevel" class="form-control" placeholder="Enter Processing Level">
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Monthly Price</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">£</span>
+              <input type="number" min="0" formControlName="price" class="form-control" placeholder="Enter Monthly Price" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Deposit</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">£</span>
+              <input type="number" min="0" formControlName="deposit" class="form-control" placeholder="Enter Deposit" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="row mb-3 mx-1 mx-sm-1 mx-md-0 mx-lg-0">
+        <div class="col d-none d-sm-none d-md-block"></div>
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 d-flex justify-content-end">
+          <button class="btn btn-outline-danger me-1" (click)="cancelUpdate()">Cancel</button>
+          <button class="btn btn-main2" [disabled]="offerForm.invalid" (click)="submitOffer()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

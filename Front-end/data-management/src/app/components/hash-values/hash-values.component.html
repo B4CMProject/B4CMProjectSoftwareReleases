@@ -1,0 +1,76 @@
+<div class="router-wrapper">
+  <div class="card border-0 shadow-sm bg-white mx-3 mb-3">
+    <div class="row py-3 px-2 m-0">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+        <ng-container *ngIf="userType==='Provider'">
+          <label class="f-label">Select Offer ID</label>
+          <select name="agrID" id="agrID" [(ngModel)]="selectedId" (ngModelChange)="getHashDatabyAgreementId()"
+            class="form-control-select">
+            <option value="" disabled selected>Select Offer ID</option>
+            <option value="{{item.Record.id}}" *ngFor="let item of offersData">{{item.Record.id}}</option>
+          </select>
+        </ng-container>
+        <ng-container *ngIf="userType==='Consumer'">
+          <label class="f-label">Select Agreement ID</label>
+          <select name="agrID" id="agrID" [(ngModel)]="selectedId" (ngModelChange)="getHashDatabyAgreementId()"
+            class="form-control-select">
+            <option value="" disabled selected>Select Agreement ID</option>
+            <option value="{{item.id}}" *ngFor="let item of allAgreements">{{item.id}}</option>
+          </select>
+        </ng-container>
+      </div>
+      <div class="col-6 d-none d-sm-none d-md-block d-lg-block d-xl-block d-xxl-block"></div>
+    </div>
+  </div>
+  <br>
+  <div class="card border-0 shadow-sm bg-white mx-3 mb-3">
+    <p class="lead fs-6 headline mt-2"><b>Hash Values</b></p>
+    <div class="table-main table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Offer ID</th>
+            <th>Hash ID</th>
+            <th>Hash Value</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="hashedData.length===0">
+            <td colspan="12" class="pb-5">
+              <div class="center pt-5 pb-3">
+                <img src="../../../assets/images/empty_table.svg" alt="et" width="100px">
+              </div>
+              <p class="lead text-danger">No Records Found !</p>
+            </td>
+          </tr>
+          <ng-container *ngIf="userType=='Consumer'">
+            <tr *ngFor="let item of hashedData | paginate:config;">
+              <td>{{item.offer_id}}</td>
+              <td>{{item.id}}</td>
+              <td>{{item.hash}}</td>
+              <td>{{item.entryDate}}</td>
+            </tr>
+          </ng-container>
+          <ng-container *ngIf="userType=='Provider'">
+            <ng-container *ngFor="let item of hashedData | paginate:config;">
+              <tr *ngFor="let subitem of item.data_hashes">
+                <td>{{item.offer_id}}</td>
+                <td>{{subitem.id}}</td>
+                <td>{{subitem.hash}}</td>
+                <td>{{subitem.entryDate}}</td>
+              </tr>
+            </ng-container>
+          </ng-container>
+
+        </tbody>
+      </table>
+    </div>
+    <ng-container *ngIf="hashedData.length>10">
+      <div class="d-flex justify-content-end mt-2">
+        <pagination-controls (pageChange)="config.currentPage=$event" class="my-pagination">
+        </pagination-controls>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="router-wrapper">
+  <div class="card border-0 shadow-sm bg-white mx-3 mb-3">
+    <p class="lead fs-6 headline"><b>All Requests</b></p>
+    <div class="table-main table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Offer ID</th>
+            <th>Validity</th>
+            <th>Data Consumer</th>
+            <th>Equipment</th>
+            <th>Asset</th>
+            <th>Processing Level</th>
+            <th>Price</th>
+            <th>Deposit</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="allRequests.length==0">
+            <td colspan="12" class="pb-5">
+              <div class="center pt-5 pb-3">
+                <img src="../../../assets/images/empty_table.svg" alt="et" width="100px">
+              </div>
+              <p class="lead text-danger">No Records Found !</p>
+            </td>
+          </tr>
+          <tr *ngFor="let item of allRequests | paginate:config; let i=index">
+            <td>{{item.offer_id}}</td>
+            <td>{{item.endDate|date:'yyyy MMM dd'}}</td>
+            <td>{{item.dataConsumer}}</td>
+            <td>{{item.offer_details.equipment||'N/A'}}</td>
+            <td>{{item.offer_details.monitoredAsset||'N/A'}}</td>
+            <td>{{item.offer_details.processingLevel||'N/A'}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.cDeposit}}</td>
+            <td class="center">
+              <ng-container *ngIf="item.status=='ACTIVE'">
+                <div class="active">Accepted</div>
+              </ng-container>
+              <ng-container *ngIf="item.status=='REJECTED'">
+                <div class="nonactive">Rejected</div>
+              </ng-container>
+              <ng-container *ngIf="item.status=='CREATED'">
+                <button class="btn btn-sm btn-main2-acc" (click)="onAcceptReject(item.offer_id,item.offer_request_id,true)">Accept</button>
+                <button class="btn btn-sm btn-main2-rej ms-2" (click)="onAcceptReject(item.offer_id,item.offer_request_id,false)">Reject</button>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-container *ngIf="allRequests.length>10">
+      <div class="d-flex justify-content-end mt-2">
+        <pagination-controls (pageChange)="config.currentPage=$event" class="my-pagination">
+        </pagination-controls>
+      </div>
+    </ng-container>
+  </div>
+</div>

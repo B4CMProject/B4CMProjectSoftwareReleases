@@ -1,0 +1,71 @@
+<div class="router-wrapper">
+  <div class="card border-0 shadow-sm bg-white mx-3 mb-3">
+    <p class="lead fs-6 headline"><b>New Offer</b></p>
+    <span class="sp-hr"></span>
+    <div class="mt-2">
+      <form [formGroup]="offerForm">
+        <div class="row mx-0 mb-1 p-0">
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Offer ID</label>
+            <input type="text" formControlName="id" class="form-control" placeholder="Enter Offer ID">
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Validity</label>
+            <div class="row m-0 p-0">
+              <div class="col-6 ps-0"><button class="btn btn-main w-100" [ngClass]="{'btn-main-active': setVal}" (click)="setValidity(true)">True</button></div>
+              <div class="col-6 pe-0"><button class="btn btn-main w-100" [ngClass]="{'btn-main-active': !setVal}" (click)="setValidity(false)">False</button></div>
+            </div>
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Data Owner</label>
+            <input type="text" formControlName="dataOwner" class="form-control" placeholder="Enter Data Owner">
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Equipments</label>
+            <input type="text" formControlName="equipment" class="form-control" placeholder="Enter Equipments">
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Asset</label>
+            <input type="text" formControlName="monitoredAsset" class="form-control" placeholder="Enter Asset">
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Processing Level</label>
+            <input type="text" formControlName="processingLevel" class="form-control" placeholder="Enter Processing Level">
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Monthly Price</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">£</span>
+              <input type="number" min="0" formControlName="price" class="form-control" placeholder="Enter Monthly Price" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Deposit</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">£</span>
+              <input type="number" min="0" formControlName="deposit" class="form-control" placeholder="Enter Deposit" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <!-- <div class="my-0 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Upload Document</label>
+            <div class="main-w">
+              <div class="button-wrap">
+                <label class="new-button" for="upload"><i class="fa fa-cloud-upload"></i> Choose File
+                  <input id="upload" type="file" accept="application/pdf">
+                </label>&nbsp;<span style="color: #ffffff;">
+                  file path here ...
+                </span>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </form>
+      <div class="row mb-3 mx-1 mx-sm-1 mx-md-0 mx-lg-0">
+        <div class="col d-none d-sm-none d-md-block"></div>
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 d-flex justify-content-end"><button [disabled]="offerForm.invalid" class="btn add-btn btn-main2" (click)="submitOffer()">Add</button></div>
+      </div>
+    </div>
+  </div>
+</div>

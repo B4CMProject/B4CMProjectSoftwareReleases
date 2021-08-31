@@ -1,0 +1,54 @@
+<div class="router-wrapper">
+  <div class="card border-0 shadow-sm bg-white mx-3 mb-3">
+    <p class="lead fs-6 headline mt-2"><b>Agreements</b></p>
+    <div class="table-main table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Agreement ID</th>
+            <th>Consumer</th>
+            <th>Offer ID</th>
+            <th>Price</th>
+            <th>Escrow ID</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>State</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="allAgreements.length===0">
+            <td colspan="12" class="pb-5">
+              <div class="center pt-5 pb-3">
+                <img src="../../../assets/images/empty_table.svg" alt="et" width="100px">
+              </div>
+              <p class="lead text-danger">No Records Found !</p>
+            </td>
+          </tr>
+          <tr *ngFor="let item of allAgreements | paginate:config; let i=index">
+            <td matTooltip="{{item.id}}" [matTooltipPosition]="'above'">{{(item.id.length>13)? (item.id |
+              slice:0:13)+'..':(item.id)}}</td>
+            <td>{{item.dataConsumer}}</td>
+            <td>{{item.offer_id}}</td>
+            <td>{{item.consumerDeposit+item.providerDeposit}}</td>
+            <td matTooltip="{{item.escrow_id}}" [matTooltipPosition]="'above'">{{(item.escrow_id.length>13)?
+              (item.escrow_id | slice:0:13)+'..':(item.escrow_id) }}</td>
+            <td>{{item.start_date||"N/A"}}</td>
+            <td>{{item.end_date||"N/A"}}</td>
+            <td>{{item.state?"True":"False"}}</td>
+            <td>
+              <div *ngIf="!item.state" class="active">Revoked</div>
+              <button *ngIf="item.state" class="btn btn-sm btn-main2-acc" (click)="revoke(item.id)">Revoke</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-container *ngIf="allAgreements.length>10">
+      <div class="d-flex justify-content-end mt-2">
+        <pagination-controls (pageChange)="config.currentPage=$event" class="my-pagination">
+        </pagination-controls>
+      </div>
+    </ng-container>
+  </div>
+</div>

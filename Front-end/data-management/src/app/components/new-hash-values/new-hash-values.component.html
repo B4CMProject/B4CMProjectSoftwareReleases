@@ -1,0 +1,44 @@
+<div class="router-wrapper">
+  <div class="card border-0 shadow-sm bg-white mx-3 mb-3">
+    <p class="lead fs-6 headline"><b>New Hash Value</b></p>
+    <span class="sp-hr"></span>
+    <div class="mt-2">
+      <form [formGroup]="newHashForm">
+        <div class="row mx-0 mb-1 p-0">
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Offer ID</label>
+            <select name="select_offer" id="s_o" formControlName="offer_id" class="form-control-select">
+              <option value="" disabled>Select Offer ID</option>
+              <option value="{{item.Record.id}}" *ngFor="let item of allRequests">{{item.Record.id}}</option>
+            </select>
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Hash ID</label>
+            <input type="text" class="form-control" formControlName="hash_id" placeholder="Enter Hash ID">
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Data Hash</label>
+            <input type="text" class="form-control" formControlName="data_hash" placeholder="Enter Data Hash" readonly>
+          </div>
+          <div class="my-3 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-2 mb-sm-0 mb-md-0">
+            <label class="f-label">Upload Document</label>
+            <div class="main-w">
+              <div class="button-wrap">
+                <label class="new-button" for="file"><i class="fa fa-cloud-upload"></i> Choose File
+                  <input id="file" formControlName="doc_file" #fileUpload (change)="uploadDoc($event)" type="file" accept="application/pdf">
+                </label>&nbsp;<span style="color: #ffffff;">
+                  {{fileName}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="row my-3 mx-1 mx-sm-1 mx-md-0 mx-lg-0">
+        <div class="col d-none d-sm-none d-md-block"></div>
+        <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 d-flex justify-content-end"><button
+            class="btn btn-main2 px-5 py-1" [disabled]="newHashForm.invalid" (click)="submitForm()">Add</button></div>
+      </div>
+    </div>
+  </div>
+</div>

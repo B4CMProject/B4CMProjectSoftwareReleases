@@ -1,0 +1,41 @@
+<div class="router-wrapper">
+  <div class="card border-0 shadow-sm bg-white mx-3 mb-3">
+    <p class="lead fs-6 headline mt-2"><b>Escrow</b></p>
+    <div class="table-main table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Escrow ID</th>
+            <th>Provider Deposit</th>
+            <th>Consumer Deposit</th>
+            <th>Payment</th>
+            <th>Released</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="allEscrow.length==0">
+            <td colspan="12" class="pb-5">
+              <div class="center pt-5 pb-3">
+                <img src="../../../assets/images/empty_table.svg" alt="et" width="100px">
+              </div>
+              <p class="lead text-danger">No Records Found !</p>
+            </td>
+          </tr>
+          <tr *ngFor="let item of allEscrow | paginate:config; let i=index">
+            <td>{{item.id}}</td>
+            <td>{{item.providerDeposit}}</td>
+            <td>{{item.consumerDeposit}}</td>
+            <td>{{item.consumerPayment}}</td>
+            <td>{{item.released}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-container *ngIf="allEscrow.length>10">
+      <div class="d-flex justify-content-end mt-2">
+        <pagination-controls (pageChange)="config.currentPage=$event" class="my-pagination">
+        </pagination-controls>
+      </div>
+    </ng-container>
+  </div>
+</div>

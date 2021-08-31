@@ -1,0 +1,7 @@
+.mat-snack-bar-container {
+  border-left: 7px solid white;
+}
+
+::ng-deep.mat-snack-bar-container {
+  border-left: 4px solid white!important;
+}

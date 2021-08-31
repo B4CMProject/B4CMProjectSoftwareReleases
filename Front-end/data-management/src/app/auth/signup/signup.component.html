@@ -1,0 +1,38 @@
+<div class="bg-main vh-100">
+  <div class="container col-xl-10 col-xxl-8 px-4 py-0">
+    <div class="row align-items-center g-lg-6 py-4">
+      <div class="col-md-10 mx-auto col-lg-6 mt-5">
+        <div class="p-4 p-md-5 card border-0 shadow bg-white">
+          <h2>Sign Up</h2>
+          <p class="lead fs-6">Register as Consumer or Provider to access the network.</p>
+          <div class="d-flex p-0 mb-3">
+            <button class="btn mn-btn btn-main2 mx-0" [ngClass]="{'btn-main2-outlined': cus}"
+              (click)="toggleCus('Provider')">Provider</button>
+            <button class="btn mn-btn btn-main2 mx-0" [ngClass]="{'btn-main2-outlined': !cus}"
+              (click)="toggleCus('Consumer')">Consumer</button>
+          </div>
+          <form [formGroup]="signupform">
+            <div class="mb-3">
+              <label class="f-label">Name</label>
+              <input type="email" formControlName="email" class="form-control" placeholder="Enter Your Full Name">
+            </div>
+            <div class="mb-3">
+              <label class="f-label">Password</label>
+              <input type="password" formControlName="password" class="form-control" placeholder="Enter Password">
+            </div>
+            <div class="mb-3">
+              <mat-radio-group aria-label="Select an option" formControlName="orgname">
+                <mat-radio-button value="Org1" class="me-4">Org 1</mat-radio-button>
+                <mat-radio-button value="Org2">Org 2</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </form>
+          <button [disabled]="signupform.invalid" class="w-100 btn ls-btn btn-main2 mx-0 mt-2" (click)="signUp()">Signup</button>
+          <div class="text-center mt-3">
+            <small class="text-muted">Already have an account? <span class="link" [routerLink]="['/auth/login']">Login</span></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="d-flex align-items-center br-left">
+  <i class="fa fa-check-circle" style="font-size: 1.5rem;" *ngIf="data.type==='success'"></i>
+  <i class="fa fa-info-circle" style="font-size: 1.5rem;" *ngIf="data.type==='info'"></i>
+  <i class="fa fa-times-circle" style="font-size: 1.5rem;" *ngIf="data.type==='error'"></i>
+  <i class="fa fa-exclamation-circle" style="font-size: 1.5rem;" *ngIf="data.type==='warning'"></i>
+  <div class="mx-3">
+    <div><strong>{{data.statusName}}</strong></div>
+    <div>{{data.text}} </div>
+  </div>
+  <div class="ms-auto">
+    <i class="fa fa-window-close" style="font-size: 1.5rem; cursor: pointer;" (click)="dialogRef.dismiss()"></i>
+  </div>
+</div>

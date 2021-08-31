@@ -1,0 +1,21 @@
+.link {
+  color      : black;
+  font-weight: bold;
+}
+
+.form-control {
+  background-color: #8FB496 !important;
+  color           : #ffffff !important;
+
+  &::placeholder {
+    color: #ffffff91 !important;
+  }
+}
+
+.f-label {
+  margin-bottom: 0.15rem;
+}
+
+.bg-main {
+  background-color: #E6EED1;
+}

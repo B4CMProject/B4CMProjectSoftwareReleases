@@ -1,0 +1,34 @@
+<svg width="1002" height="728" viewBox="0 0 1002 728" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M91 0C40.7422 0 0 40.7422 0 91V637C0 687.258 40.7422 728 91 728H911C961.258 728 1002 687.258 1002 637V91C1002 40.7422 961.258 0 911 0H91ZM99 30C61.9971 30 32 59.9968 32 97V629C32 666.003 61.9971 696 99 696H904C941.003 696 971 666.003 971 629V97C971 59.9968 941.003 30 904 30H99Z" fill="#F40000"/>
+<rect y="117" width="1002" height="31" fill="#F40000"/>
+<rect y="230" width="1002" height="31" fill="#F40000"/>
+<rect y="343" width="1002" height="31" fill="#F40000"/>
+<rect y="456" width="1002" height="31" fill="#F40000"/>
+<rect y="569" width="1002" height="31" fill="#F40000"/>
+<rect x="222" y="56" width="559" height="31" rx="15.5" fill="#F40000"/>
+<rect x="62" y="174" width="450" height="31" rx="15.5" fill="#F40000"/>
+<rect x="533" y="174" width="102" height="31" rx="15.5" fill="#F40000"/>
+<rect x="62" y="286" width="102" height="31" rx="15.5" fill="#F40000"/>
+<rect x="501" y="286" width="102" height="31" rx="15.5" fill="#F40000"/>
+<rect x="501" y="400" width="102" height="31" rx="15.5" fill="#F40000"/>
+<rect x="501" y="513" width="102" height="31" rx="15.5" fill="#F40000"/>
+<rect x="501" y="626" width="102" height="31" rx="15.5" fill="#F40000"/>
+<rect x="387" y="285" width="63" height="31" rx="15.5" fill="#F40000"/>
+<rect x="387" y="399" width="63" height="31" rx="15.5" fill="#F40000"/>
+<rect x="387" y="512" width="63" height="31" rx="15.5" fill="#F40000"/>
+<rect x="387" y="625" width="63" height="31" rx="15.5" fill="#F40000"/>
+<rect x="62" y="399" width="102" height="31" rx="15.5" fill="#F40000"/>
+<rect x="62" y="513" width="102" height="31" rx="15.5" fill="#F40000"/>
+<rect x="62" y="625" width="102" height="31" rx="15.5" fill="#F40000"/>
+<rect x="730" y="174" width="209" height="31" rx="15.5" fill="#F40000"/>
+<rect x="668" y="728" width="611" height="31" transform="rotate(-90 668 728)" fill="#F40000"/>
+<rect x="326" y="728" width="498" height="31" transform="rotate(-90 326 728)" fill="#F40000"/>
+<circle cx="744.5" cy="302.5" r="15.5" fill="#F40000"/>
+<circle cx="805.5" cy="302.5" r="15.5" fill="#F40000"/>
+<circle cx="744.5" cy="641.5" r="15.5" fill="#F40000"/>
+<circle cx="805.5" cy="641.5" r="15.5" fill="#F40000"/>
+<circle cx="744.5" cy="528.5" r="15.5" fill="#F40000"/>
+<circle cx="805.5" cy="528.5" r="15.5" fill="#F40000"/>
+<circle cx="866.5" cy="528.5" r="15.5" fill="#F40000"/>
+<circle cx="744.5" cy="414.5" r="15.5" fill="#F40000"/>
+</svg>

@@ -1,6 +1,8 @@
 package main
 
-import "time"
+import (
+	"time"
+)
 
 // HistoryQueryResult structure used for returning result of history query
 type HistoryQueryResult struct {
@@ -60,6 +62,7 @@ type DataHash struct {
 
 //DataAgreement type
 type DataAgreement struct {
+	Price           float64  `json:"price"`
 	DocType         string   `json:"docType"`
 	ID              string   `json:"id"`
 	DataProvider    string   `json:"dataProvider"`
@@ -105,6 +108,9 @@ type OfferRequest struct {
 
 //Costs type
 type Costs struct {
+	FalsifyCount          int     `json:"falsifyCount"`
+	LatencyCount          int     `json:"latencyCount"`
+	CreatedAt             int64   `json:"createdAt"`
 	DocType               string  `json:"docType"`
 	ID                    string  `json:"id"`
 	Agreement             string  `json:"agreement"`
@@ -140,6 +146,8 @@ const (
 	CODE_A          = "101"
 	CODE_B          = "102"
 	CODE_C          = "103"
+	LATENCY_TIME    = 0.15
+	EXPIRED         = "EXPIRED"
 )
 
 type AgreementHash struct {
